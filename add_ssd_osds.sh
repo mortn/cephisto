@@ -10,7 +10,7 @@ ceph osd crush add-bucket ssd root
 
 # Create a new ruleset
 # ceph osd crush rule create-simple <name> <root> <type>
-ceph osd crush rule create-simple ssd ssd root
+ceph osd crush rule create-simple ssd ssd host
 
 # Creating logical host buckets
 # We just add "-ssd" to the actual hostname of the nodes
