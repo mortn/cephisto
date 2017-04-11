@@ -2,7 +2,7 @@
 #  Adding SSD OSDs on existing spinning disk OSD nodes
 #
 #  In the test phase I check with "ceph osd tree"
-#  after most commands to see how tree evolves 
+#  after most commands to see how the tree evolves 
 #
 
 # Create the Ceph root bucket 
@@ -25,14 +25,11 @@ ceph osd tree
 ceph osd crush move osdhost1-ssd root=ssd
 ceph osd crush move osdhost2-ssd root=ssd
 
-# And check again (of course, I know you want to):
-ceph osd tree
-
-# Now turn our 250G SSDs into OSDs.
+# Now turn our SSDs into OSDs.
 # osdhost1 has 2 SSDs and osdhost2 has just 1
-ceph-ceploy osd create osdhost1:/dev/sdb
-ceph-ceploy osd create osdhost1:/dev/sdc
-ceph-ceploy osd create osdhost2:/dev/sdc
+ceph-ceploy osd create osdhost1:sdb
+ceph-ceploy osd create osdhost1:sdc
+ceph-ceploy osd create osdhost2:sdb
 
 # Add the OSDs to the tree under their nodes
 ceph osd crush add 11 0.230 host=osdhost1-ssd
